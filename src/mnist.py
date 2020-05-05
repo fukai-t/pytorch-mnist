@@ -57,7 +57,7 @@ class Net (nn.Module):
 
         # 128 nodes --> 10 nodes
         # (128 x 10 = 1280 parameters)
-        self.fc2 = nn.Lienar(128, 10)
+        self.fc2 = nn.Linear(128, 10)
 
     def forward(self, x):
         # Input: 28x28 x 1 channel
