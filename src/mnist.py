@@ -96,16 +96,15 @@ class Net (nn.Module):
 import torch.optim as optim
 
 net = Net()
-#Qiita
+# From https://qiita.com/fukuit/items/215ef75113d97560e599
 # criterion = nn.CrossEntropyLoss()
 # optimizer = optim.SGD(net.parameters(), lr=0.001, moment=0.9)
 
-#Official
+# From Official example (https://github.com/pytorch/examples/blob/master/mnist/main.py)
 criterion = F.nll_loss
-optimizer = optim.Adadelta(net.parameters(), lr=1.0)  # value of lr is default value in the example code
+optimizer = optim.Adadelta(net.parameters(), lr=1.0)
+## value of lr is default value in the example code
 
-# loss = F.nll_loss (output, target)
-# loss.backward()
 epochs = 2
 
 for epoch in range (epochs):
@@ -113,10 +112,10 @@ for epoch in range (epochs):
     for itr, (inputs, labels) in enumerate (trainloader, 0):
         optimizer.zero_grad()
 
-        output = net(inputs)    # Forward
+        output = net(inputs)             # Forward
         loss = criterion(output, labels) # Calculate loss
         loss.backward()                  # Backward
-        optimizer.step()
+        optimizer.step()                 # Update parameters
 
         running_loss += loss.item() # ???
         if itr % 100 == 0:
