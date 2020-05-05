@@ -125,3 +125,14 @@ for epoch in range (epochs):
                 running_loss / 100))
             running_loss = 0.0
 
+
+correct = 0
+total = 0
+
+with torch.no_grad():
+    for (images, labels) in testloader:
+        outputs = net(images)
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+print('Accuracy: {:.2f} %%'.format(100 * float(correct/total)))
