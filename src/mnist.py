@@ -117,10 +117,11 @@ for epoch in range (epochs):
         loss.backward()                  # Backward
         optimizer.step()                 # Update parameters
 
-        running_loss += loss.item() # ???
-        if itr % 100 == 0:
-            print ('[{:d}, {:5d}] loss: {:3f}'.format(
-                epoch, itr,
+        # Print avarage of loss per 100 iterations
+        running_loss += loss.item()
+        if (itr + 1) % 100 == 0:
+            print ('[epoch #{:d}, iter #{:d}] loss: {:3f}'.format(
+                (epoch + 1), (itr + 1),
                 running_loss / 100))
             running_loss = 0.0
 
